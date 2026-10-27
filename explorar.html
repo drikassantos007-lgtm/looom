@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loom — Explorar</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body class="app-body">
+
+  <main class="pagina-explorar">
+    <section class="explorar-topo">
+      <h1>Explorar Alunos</h1>
+      <p>Busque colegas por nome, turma ou ano.</p>
+
+      <div class="filtros">
+        <input type="text" id="pesquisa" placeholder="Pesquisar por nome...">
+
+        <select id="filtroTurma">
+          <option value="">Todas as turmas</option>
+          <option value="DS">Desenvolvimento de Sistemas</option>
+          <option value="ADM">Administração</option>
+          <option value="PRT">Portos</option>
+          <option value="BIO">Bioeconomia</option>
+        </select>
+
+        <select id="filtroAno">
+          <option value="">Todos os anos</option>
+          <option value="1">1º Ano</option>
+          <option value="2">2º Ano</option>
+          <option value="3">3º Ano</option>
+        </select>
+
+        <button onclick="filtrarAlunos()">Buscar</button>
+      </div>
+    </section>
+
+    <p id="semResultados" style="display:none;text-align:center;color:var(--text-muted);padding:30px 0;font-size:16px;">
+      Nenhum aluno encontrado com esses filtros.
+    </p>
+
+    <section class="grid-alunos" id="listaAlunos">
+
+      <div class="aluno-card" data-user="andriellyn" data-nome="Andriellyn" data-turma="DS" data-ano="2">
+        <img src="img/musa.jpg" alt="Andriellyn">
+        <h3>Andriellyn</h3>
+        <p>2º Ano • DS</p>
+        <span class="status-card online-texto">● Online</span>
+        <div class="aluno-acoes">
+          <button class="btn-seguir" onclick="seguirAluno(this)">+ Seguir</button>
+          <a href="perfil.html?u=andriellyn" class="btn-ver-perfil">Ver perfil</a>
+        </div>
+      </div>
+
+      <div class="aluno-card" data-user="mickael" data-nome="Mickael" data-turma="ADM" data-ano="2">
+        <img src="img/ratopor.jpg" alt="Mickael">
+        <h3>Mickael</h3>
+        <p>2º Ano • ADM</p>
+        <span class="status-card offline-texto">● Offline</span>
+        <div class="aluno-acoes">
+          <button class="btn-seguir" onclick="seguirAluno(this)">+ Seguir</button>
+          <a href="perfil.html?u=mickael" class="btn-ver-perfil">Ver perfil</a>
+        </div>
+      </div>
+
+      <div class="aluno-card" data-user="entoin" data-nome="Entoin" data-turma="BIO" data-ano="1">
+        <img src="img/bluez.jpg" alt="Entoin">
+        <h3>Entoin</h3>
+        <p>1º Ano • BIO</p>
+        <span class="status-card online-texto">● Online</span>
+        <div class="aluno-acoes">
+          <button class="btn-seguir" onclick="seguirAluno(this)">+ Seguir</button>
+          <a href="perfil.html?u=entoin" class="btn-ver-perfil">Ver perfil</a>
+        </div>
+      </div>
+
+      <div class="aluno-card" data-user="joao" data-nome="João" data-turma="DS" data-ano="2">
+        <img src="img/joao.jpg" alt="João">
+        <h3>João</h3>
+        <p>2º Ano • DS</p>
+        <span class="status-card online-texto">● Online</span>
+        <div class="aluno-acoes">
+          <button class="btn-seguir" onclick="seguirAluno(this)">+ Seguir</button>
+          <a href="perfil.html?u=joao" class="btn-ver-perfil">Ver perfil</a>
+        </div>
+      </div>
+
+      <div class="aluno-card" data-user="ruan" data-nome="Ruan" data-turma="ADM" data-ano="3">
+        <img src="img/rua.jpg" alt="Ruan">
+        <h3>Ruan</h3>
+        <p>3º Ano • ADM</p>
+        <span class="status-card offline-texto">● Offline</span>
+        <div class="aluno-acoes">
+          <button class="btn-seguir" onclick="seguirAluno(this)">+ Seguir</button>
+          <a href="perfil.html?u=ruan" class="btn-ver-perfil">Ver perfil</a>
+        </div>
+      </div>
+
+      <div class="aluno-card" data-user="gabriel" data-nome="Gabriel" data-turma="PRT" data-ano="1">
+        <img src="img/gabriel.jpg" alt="Gabriel">
+        <h3>Gabriel</h3>
+        <p>1º Ano • PRT</p>
+        <span class="status-card online-texto">● Online</span>
+        <div class="aluno-acoes">
+          <button class="btn-seguir" onclick="seguirAluno(this)">+ Seguir</button>
+          <a href="perfil.html?u=gabriel" class="btn-ver-perfil">Ver perfil</a>
+        </div>
+      </div>
+
+      <div class="aluno-card" data-user="giovana" data-nome="Giovana" data-turma="DS" data-ano="3">
+        <img src="img/gio.png" alt="Giovana">
+        <h3>Giovana</h3>
+        <p>3º Ano • DS</p>
+        <span class="status-card online-texto">● Online</span>
+        <div class="aluno-acoes">
+          <button class="btn-seguir" onclick="seguirAluno(this)">+ Seguir</button>
+          <a href="perfil.html?u=giovana" class="btn-ver-perfil">Ver perfil</a>
+        </div>
+      </div>
+
+      <div class="aluno-card" data-user="arthur" data-nome="Arthur" data-turma="BIO" data-ano="2">
+        <img src="img/arthur.jpg" alt="Arthur">
+        <h3>Arthur</h3>
+        <p>2º Ano • BIO</p>
+        <span class="status-card offline-texto">● Offline</span>
+        <div class="aluno-acoes">
+          <button class="btn-seguir" onclick="seguirAluno(this)">+ Seguir</button>
+          <a href="perfil.html?u=arthur" class="btn-ver-perfil">Ver perfil</a>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <p>© 2026 Loom — Projeto escolar</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

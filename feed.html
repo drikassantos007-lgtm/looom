@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loom — Feed</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body class="app-body">
+<div class="ap-conteudo">
+    <div class="ap-top">
+      <input type="text" id="buscaFeed" placeholder="Buscar nas postagens..." oninput="aplicarFiltroFeed()">
+      <button class="ap-novo" onclick="document.getElementById('textoPostagem').focus()">＋ Nova postagem</button>
+    </div>
+
+    <h2>Turmas</h2>
+    <div class="ap-turmas">
+      <button class="ap-turma active" data-curso="" onclick="filtrarFeed('',this)"><i>★</i>Todas</button>
+      <button class="ap-turma" data-curso="DS" onclick="filtrarFeed('DS',this)"><i>DS</i>Sistemas</button>
+      <button class="ap-turma" data-curso="ADM" onclick="filtrarFeed('ADM',this)"><i>ADM</i>Administração</button>
+      <button class="ap-turma" data-curso="PRT" onclick="filtrarFeed('PRT',this)"><i>PRT</i>Portos</button>
+      <button class="ap-turma" data-curso="BIO" onclick="filtrarFeed('BIO',this)"><i>BIO</i>Bioeconomia</button>
+    </div>
+
+    <section class="criar-postagem">
+      <div class="criar-topo">
+        <img id="apFoto2" src="img/musa.jpg" alt="">
+        <div><h3 id="apNome2">Andriellyn</h3><span id="apTurma2">2º Ano • DS</span></div>
+      </div>
+      <textarea id="textoPostagem" placeholder="No que você está pensando?"></textarea>
+      <input type="file" id="imagemPostagem" accept="image/*">
+      <div class="acoes-postagem">
+        <button class="btn-limpar-post" onclick="limparPostagem()">🗑 Limpar</button>
+        <button class="btn-publicar" onclick="criarPostagem()">Publicar</button>
+      </div>
+    </section>
+
+    <h2>Feed</h2>
+    <section class="lista-postagens" id="listaPostagens">
+
+      <div class="post-card" data-turma="DS" data-autor="andriellyn">
+        <div class="post-topo-card">
+          <div class="post-topo-info"><img src="img/musa.jpg" alt=""><div><h3>Andriellyn</h3><span>2º Ano • DS</span></div></div>
+          <button class="btn-excluir-post" onclick="excluirPost(this)" title="Excluir postagem">✕</button>
+        </div>
+        <p class="post-texto">Bem-vindos ao Loom! Esse espaço foi criado para compartilhar ideias, novidades e conectar alunos da escola.</p>
+        <div class="post-acoes">
+          <button onclick="curtirPost(this)" data-count="12" data-curtido="0">❤ 12</button>
+          <button onclick="mostrarComentarios(this)">Comentários</button>
+        </div>
+        <div class="comentarios" style="display:none;">
+          <div class="lista-comentarios"><div class="comentario" data-autor="Mickael"><p><strong style="color:var(--accent)">Mickael</strong> Que projeto incrível!</p><div class="comentario-acoes"><button onclick="responderComentario(this)">Responder</button></div><div class="respostas"></div></div></div>
+          <div class="comentario-row"><input type="text" placeholder="Escreva um comentário..." class="input-comentario"><button class="btn-enviar-comentario" onclick="comentarPost(this)">Enviar</button></div>
+        </div>
+      </div>
+
+      <div class="post-card" data-turma="ADM" data-autor="mickael">
+        <div class="post-topo-card">
+          <div class="post-topo-info"><img src="img/ratopor.jpg" alt=""><div><h3>Mickael</h3><span>2º Ano • ADM</span></div></div>
+          <button class="btn-excluir-post" onclick="excluirPost(this)" title="Excluir postagem">✕</button>
+        </div>
+        <p class="post-texto">Finalizando mais uma etapa do projeto. A interface está ficando muito boa!</p>
+        <div class="post-acoes">
+          <button onclick="curtirPost(this)" data-count="7" data-curtido="0">❤ 7</button>
+          <button onclick="mostrarComentarios(this)">Comentários</button>
+        </div>
+        <div class="comentarios" style="display:none;">
+          <div class="lista-comentarios"></div>
+          <div class="comentario-row"><input type="text" placeholder="Escreva um comentário..." class="input-comentario"><button class="btn-enviar-comentario" onclick="comentarPost(this)">Enviar</button></div>
+        </div>
+      </div>
+
+      <div class="post-card" data-turma="DS" data-autor="giovana">
+        <div class="post-topo-card">
+          <div class="post-topo-info"><img src="img/gio.png" alt=""><div><h3>Giovana</h3><span>3º Ano • DS</span></div></div>
+          <button class="btn-excluir-post" onclick="excluirPost(this)" title="Excluir postagem">✕</button>
+        </div>
+        <p class="post-texto">Semana da Tecnologia chegando! Quem já escolheu o tema da apresentação?</p>
+        <div class="post-acoes">
+          <button onclick="curtirPost(this)" data-count="5" data-curtido="0">❤ 5</button>
+          <button onclick="mostrarComentarios(this)">Comentários</button>
+        </div>
+        <div class="comentarios" style="display:none;">
+          <div class="lista-comentarios"></div>
+          <div class="comentario-row"><input type="text" placeholder="Escreva um comentário..." class="input-comentario"><button class="btn-enviar-comentario" onclick="comentarPost(this)">Enviar</button></div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loom — Configurações</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body class="app-body">
+
+  <main class="config-pagina">
+    <h1>Configurações</h1>
+    <p>Gerencie sua conta, aparência e privacidade.</p>
+
+    <!-- CONTA -->
+    <div class="config-secao">
+      <div class="config-secao-titulo"> Conta</div>
+
+      <div class="config-item">
+        <div class="config-item-info">
+          <label>Nome de usuário</label>
+          <span>Como você aparece para os outros</span>
+        </div>
+        <input type="text" id="cfgNome" placeholder="Seu nome">
+        <button class="btn-config-salvar" onclick="salvarNome()">Salvar</button>
+      </div>
+
+      <div class="config-item">
+        <div class="config-item-info">
+          <label>E-mail</label>
+          <span>Seu e-mail escolar</span>
+        </div>
+        <input type="email" id="cfgEmail" placeholder="email@escola.com">
+        <button class="btn-config-salvar" onclick="salvarEmail()">Salvar</button>
+      </div>
+
+      <div class="config-item">
+        <div class="config-item-info">
+          <label>Senha</label>
+          <span>Altere sua senha de acesso</span>
+        </div>
+        <input type="password" id="cfgSenha" placeholder="Nova senha">
+        <button class="btn-config-salvar" onclick="salvarSenha()">Salvar</button>
+      </div>
+    </div>
+
+    <!-- APARÊNCIA -->
+    <div class="config-secao">
+      <div class="config-secao-titulo"> Aparência</div>
+
+      <div class="config-item">
+        <div class="config-item-info">
+          <label>Modo claro</label>
+          <span>Alterna entre tema claro e escuro</span>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="toggleTema" onchange="toggleTheme()">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+
+      <div class="config-item" style="flex-wrap:wrap">
+        <div class="config-item-info">
+          <label>Paleta de cores</label>
+          <span>Escolha o conjunto de cores do Loom</span>
+        </div>
+        <div class="paletas" id="listaPaletas" style="width:100%"></div>
+      </div>
+
+      <div class="config-item">
+        <div class="config-item-info">
+          <label>Tamanho da fonte</label>
+          <span>Ajuste o tamanho do texto</span>
+        </div>
+        <select id="cfgFonte" onchange="ajustarFonte(this.value)">
+          <option value="13">Pequena</option>
+          <option value="15">Normal</option>
+          <option value="17">Grande</option>
+          <option value="19">Muito grande</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- NOTIFICAÇÕES -->
+    <div class="config-secao">
+      <div class="config-secao-titulo"> Notificações</div>
+
+      <div class="config-item">
+        <div class="config-item-info">
+          <label for="notifSeguidores">Novos seguidores</label>
+          <span>Avisa quando alguém te seguir</span>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="notifSeguidores" checked>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+
+      <div class="config-item">
+        <div class="config-item-info">
+          <label for="notifFeed">Atividade no feed</label>
+          <span>Curtidas e comentários nas suas postagens</span>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="notifFeed" checked>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- PRIVACIDADE -->
+    <div class="config-secao">
+      <div class="config-secao-titulo"> Privacidade</div>
+
+      <div class="config-item">
+        <div class="config-item-info">
+          <label for="mostrarOnline">Mostrar status online</label>
+          <span>Exibe quando você está ativo</span>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="mostrarOnline" checked>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+
+      <div class="config-item">
+        <div class="config-item-info">
+          <label for="mostrarViews">Mostrar visualizações</label>
+          <span>Exibe o contador de visitas no perfil</span>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="mostrarViews" checked>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- LINKS -->
+    <div class="config-secao">
+      <div class="config-secao-titulo"> Meus Links</div>
+
+      <div id="listaLinksConfig"></div>
+
+      <div class="config-item" style="border-top: 1px solid var(--border);">
+        <div class="config-item-info">
+          <label>Adicionar novo link</label>
+          <span>Máximo de 6 links no perfil</span>
+        </div>
+        <button class="btn-config-salvar" onclick="adicionarLink()">+ Adicionar</button>
+        <button class="btn-config-salvar" onclick="salvarLinks()">Salvar links</button>
+      </div>
+    </div>
+
+    <!-- SESSÃO -->
+    <div class="config-secao">
+      <div class="config-secao-titulo"> Sessão</div>
+
+      <div class="config-item">
+        <div class="config-item-info">
+          <label>Sair da conta</label>
+          <span>Você será redirecionado para a tela de login</span>
+        </div>
+        <button class="btn-config-perigo" onclick="sairDaConta()">Sair</button>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="rodape">
+    <p>© 2026 Loom — Projeto escolar</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    /* ── INIT CONFIGS ── */
+    document.addEventListener("DOMContentLoaded", function () {
+      const nome = localStorage.getItem("wrmNome") || "";
+      const email = localStorage.getItem("wrmEmail") || "";
+      const tema = localStorage.getItem("temaPerfil") || "padrao";
+      const isLight = document.body.classList.contains("light");
+
+      if (nome) document.getElementById("cfgNome").value = nome;
+      if (email) document.getElementById("cfgEmail").value = email;
+            document.getElementById("toggleTema").checked = isLight;
+
+      const fonte = localStorage.getItem("wrmFonte") || "15";
+      document.getElementById("cfgFonte").value = fonte;
+
+      getLinks(meuUsuario()).forEach(u => adicionarLink(u));
+      document.getElementById("mostrarOnline").checked = localStorage.getItem("wrmOnline") !== "false";
+      document.getElementById("mostrarViews").checked = localStorage.getItem("wrmViews") !== "false";
+      document.getElementById("notifSeguidores").checked = localStorage.getItem("wrmNotifSeg") !== "false";
+      document.getElementById("notifFeed").checked = localStorage.getItem("wrmNotifFeed") !== "false";
+
+      document.getElementById("mostrarOnline").addEventListener("change", e => {
+        localStorage.setItem("wrmOnline", e.target.checked);
+        showToast("Preferência salva!", "success");
+      });
+      document.getElementById("mostrarViews").addEventListener("change", e => {
+        localStorage.setItem("wrmViews", e.target.checked);
+        showToast("Preferência salva!", "success");
+      });
+      document.getElementById("notifSeguidores").addEventListener("change", e => {
+        localStorage.setItem("wrmNotifSeg", e.target.checked);
+        showToast("Preferência salva!", "success");
+      });
+      document.getElementById("notifFeed").addEventListener("change", e => {
+        localStorage.setItem("wrmNotifFeed", e.target.checked);
+        showToast("Preferência salva!", "success");
+      });
+    });
+
+    function salvarNome() {
+      const val = document.getElementById("cfgNome").value.trim();
+      if (!val) { showToast("Digite um nome!", "error"); return; }
+      localStorage.setItem("wrmNome", val);
+      atualizarUsuario({ nome: val });
+      showToast("Nome atualizado!", "success");
+    }
+
+    function salvarEmail() {
+      const val = document.getElementById("cfgEmail").value.trim();
+      if (!val) { showToast("Digite um e-mail!", "error"); return; }
+      localStorage.setItem("wrmEmail", val);
+      atualizarUsuario({ email: val });
+      showToast("E-mail atualizado!", "success");
+    }
+
+    async function salvarSenha() {
+      const val = document.getElementById("cfgSenha").value;
+      if (val.length < 6) { showToast("Senha muito curta!", "error"); return; }
+      atualizarUsuario({ senhaHash: await hashSenha(meuUsuario(), val) });
+      showToast("Senha alterada!", "success");
+      document.getElementById("cfgSenha").value = "";
+    }
+
+    function ajustarFonte(tamanho) {
+      aplicarFonte(tamanho, true);
+    }
+
+    function adicionarLink(valor = "") {
+      const lista = document.getElementById("listaLinksConfig");
+      const itens = lista.querySelectorAll(".config-link-item");
+      if (itens.length >= 6) { showToast("Máximo de 6 links!", "error"); return; }
+      const div = document.createElement("div");
+      div.className = "config-link-item";
+      div.innerHTML = `
+        <span class="emoji">🔗</span>
+        <input type="text" placeholder="Cole seu link aqui">
+        <button class="btn-remover-link" onclick="removerLink(this)">✕</button>
+      `;
+      div.querySelector("input").value = valor;
+      if (valor) div.querySelector(".emoji").textContent = infoLink(valor).emoji;
+      lista.appendChild(div);
+    }
+
+    function salvarLinks() {
+      const urls = [...document.querySelectorAll("#listaLinksConfig input")].map(i => urlSegura(i.value)).filter(Boolean);
+      setLinks(meuUsuario(), [...new Set(urls)].slice(0, 6));
+      showToast("Links salvos!", "success");
+    }
+
+    function removerLink(btn) {
+      btn.closest(".config-link-item").remove();
+      showToast("Link removido.", "");
+    }
+
+    function sairDaConta() {
+      localStorage.removeItem("wrmLogado");
+      showToast("Até logo!", "");
+      setTimeout(() => window.location.href = "login.html", 800);
+    }
+  </script>
+</body>
+</html>
